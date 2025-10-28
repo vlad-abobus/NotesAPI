@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  # Notes API service with SQLite
+  api:
+    build: .
+    container_name: notes-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./notes.db
+      - SECRET_KEY=your-super-secret-key-change-in-production
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+    volumes:
+      - ./app:/app/app
+      - ./data:/app/data
+      - ./logs:/app/logs
+    restart: unless-stopped
+

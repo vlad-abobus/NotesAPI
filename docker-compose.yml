@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Notes API service
+  api:
+    build: .
+    container_name: notes-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://notesuser:notespass@db:5432/notesdb
+      - SECRET_KEY=your-super-secret-key-change-in-production
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+    volumes:
+      - ./app:/app/app
+      - ./logs:/app/logs
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  # PostgreSQL database (optional, can use SQLite instead)
+  db:
+    image: postgres:15-alpine
+    container_name: notes-db
+    environment:
+      - POSTGRES_USER=notesuser
+      - POSTGRES_PASSWORD=notespass
+      - POSTGRES_DB=notesdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
