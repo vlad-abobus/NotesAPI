@@ -460,17 +460,6 @@ docker-compose down
 3. Commit зміни (`git commit -m 'Add some AmazingFeature'`)
 4. Push в branch (`git push origin feature/AmazingFeature`)
 5. Відкрийте Pull Request
-
-## 📝 Ліцензія
-
-MIT License
-
-## 📧 Контакт
-
-Ваше Ім'я - [@your_twitter](https://twitter.com/your_twitter)
-
-Project Link: [https://github.com/yourusername/notes-api](https://github.com/yourusername/notes-api)
-
 ---
 
 **Зроблено з ❤️ на FastAPI**
